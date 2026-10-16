@@ -1,0 +1,317 @@
+/* Meekijken demo: two panes with the same page, a level switch and the counters. */
+
+.follow {
+  --lead: var(--orange);
+  --view: var(--cyan);
+  background: var(--deep);
+}
+.follow [hidden] {
+  display: none !important;
+}
+
+/* ---- How much do you share? ---- */
+.follow-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 2px;
+  padding: 2px;
+}
+.follow-question {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 8px 14px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+.follow-levels {
+  flex: 1 1 320px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+.follow-levels button {
+  min-height: 44px;
+  padding: 8px 6px;
+  border: 0;
+  background: #262223;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.follow-levels button.is-on {
+  background: var(--lead);
+  color: var(--ink);
+}
+.follow-levels button:hover,
+.follow-levels button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+/* ---- The two panes ---- */
+.follow-panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 0 2px;
+}
+.follow-pane {
+  min-width: 0;
+  background: var(--panel);
+  color: var(--ink);
+}
+.follow-who {
+  margin: 0;
+  padding: 7px 12px;
+  background: var(--lead);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.follow-who span {
+  margin-left: 8px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.follow-pane[data-role="view"] .follow-who {
+  background: var(--view);
+}
+
+.follow-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 2px 2px 0;
+  background: var(--deep);
+}
+.follow-tabs button {
+  flex: 1 1 0;
+  min-height: 38px;
+  padding: 6px 4px;
+  border: 0;
+  background: var(--panel-2);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.follow-tabs button[aria-pressed="true"] {
+  background: var(--panel);
+  font-weight: 700;
+}
+.follow-tabs button:disabled {
+  cursor: default;
+}
+.follow-tabs button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.follow-scroll {
+  height: 340px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.follow-content {
+  position: relative;
+  padding: 14px 16px 24px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.follow-content h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+.follow-content p {
+  margin: 0 0 14px;
+}
+
+.follow-field {
+  display: block;
+  margin: 0 0 14px;
+  padding: 8px;
+  border: 0;
+  background: var(--panel-2);
+}
+.follow-field > span,
+.follow-field > legend {
+  display: block;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.follow-field > legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.follow-field input[type="text"],
+.follow-field select,
+.follow-field textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  opacity: 1;
+}
+.follow-field textarea {
+  min-height: 96px;
+  resize: none;
+}
+.follow-field.is-focus {
+  box-shadow: inset 0 0 0 3px var(--lead);
+}
+.follow-pane[data-role="lead"] .follow-field:focus-within {
+  box-shadow: inset 0 0 0 3px var(--lead);
+}
+.follow-field input:focus-visible,
+.follow-field select:focus-visible,
+.follow-field textarea:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.follow-option {
+  display: inline-block;
+  margin: 0 2px 2px 0;
+}
+.follow-option input {
+  position: absolute;
+  opacity: 0;
+}
+.follow-option span {
+  display: inline-block;
+  min-width: 72px;
+  padding: 8px 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.follow-pane[data-role="view"] .follow-option span {
+  cursor: default;
+}
+.follow-option input:checked + span {
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+}
+.follow-option input:checked + span[data-value="purple"] { background: var(--purple); color: var(--ink); }
+.follow-option input:checked + span[data-value="green"] { background: var(--green); color: var(--ink); }
+.follow-option input:checked + span[data-value="cyan"] { background: var(--cyan); color: var(--ink); }
+.follow-option input:checked + span[data-value="orange"] { background: var(--orange); color: var(--ink); }
+.follow-option input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* The other person's pointer */
+.follow-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: var(--lead);
+  box-shadow: 0 0 0 2px var(--ink);
+  pointer-events: none;
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+/* ---- Counters ---- */
+.follow-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 2px;
+  padding: 2px;
+}
+.follow-stats {
+  flex: 1 1 420px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2px;
+  margin: 0;
+}
+.follow-stats div {
+  padding: 9px 12px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.follow-stats dt {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.follow-stats dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+.follow-actions {
+  display: flex;
+}
+.follow-actions button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  background: var(--view);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.follow-actions button:hover,
+.follow-actions button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+.follow-note {
+  margin: 0;
+  padding: 8px 14px 12px;
+  color: var(--panel);
+  font-size: 13px;
+}
+
+/* The second window only watches */
+.follow.is-watching .follow-panes {
+  grid-template-columns: 1fr;
+}
+.follow.is-watching .follow-scroll {
+  height: 60vh;
+}
+
+@media (max-width: 720px) {
+  .follow-panes {
+    grid-template-columns: 1fr;
+  }
+  .follow-scroll {
+    height: 260px;
+  }
+  .follow-levels button {
+    font-size: 11px;
+    padding: 8px 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .follow-dot {
+    transition: none;
+  }
+}

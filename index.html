@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Two browsers, one screen</title>
+    <style>
+      :root {
+        --black: #1b1819;
+        --deep: #0f0d0e;
+        --panel: #bdcacf;
+        --panel-2: #9fb0b7;
+        --ink: #1b1819;
+        --purple: #925ba4;
+        --green: #31b578;
+        --cyan: #60c5c8;
+        --orange: #f37641;
+        --yellow: #f7ef1e;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--black);
+      }
+      body {
+        margin: 0;
+        color: #fff;
+        font: 17px/1.55 Arial, Helvetica, sans-serif;
+      }
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      h1 {
+        margin: 8px 0 4px;
+        font-size: 32px;
+        line-height: 1.1;
+      }
+      .lead {
+        margin: 0 0 16px;
+        color: var(--panel);
+      }
+      .lead a {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Two browsers, one screen</h1>
+      <p class="lead">What you do on the left appears on the right, without sharing your screen. The article that goes with it: <a href="https://hexz.net/meekijken/">Twee browsers, één scherm</a> on hexz.net (in Dutch).</p>
+      <div class="demo">
+        <link rel="stylesheet" href="demo/follow.css" />
+        <section class="follow" id="follow-demo" aria-label="Twee vensters: wat je links doet, zie je rechts">
+          <div class="follow-share">
+            <p class="follow-question" id="follow-question">Hoeveel deel je?</p>
+            <div class="follow-levels" role="group" aria-labelledby="follow-question"></div>
+          </div>
+          <div class="follow-panes">
+            <div class="follow-pane" data-role="lead">
+              <p class="follow-who">jij <span data-stat="hint">beweeg, scrol en typ hier</span></p>
+              <div class="follow-page"></div>
+            </div>
+            <div class="follow-pane" data-role="view">
+              <p class="follow-who">de meekijker <span data-stat="sees"></span></p>
+              <div class="follow-page"></div>
+            </div>
+          </div>
+          <div class="follow-bar">
+            <dl class="follow-stats">
+              <div><dt>verbinding</dt><dd data-stat="link">…</dd></div>
+              <div><dt>berichten</dt><dd data-stat="messages">0</dd></div>
+              <div><dt>verstuurd</dt><dd data-stat="bytes">0 bytes</dd></div>
+              <div><dt>nu</dt><dd data-stat="rate">0 bytes per seconde</dd></div>
+            </dl>
+            <div class="follow-actions">
+              <button type="button" data-action="window">open een tweede venster</button>
+            </div>
+          </div>
+          <p class="follow-note" data-stat="note"></p>
+          <noscript><p class="follow-note">Dit voorbeeld heeft JavaScript nodig.</p></noscript>
+        </section>
+        <script type="module" src="demo/follow.js"></script>
+      </div>
+    </main>
+  </body>
+</html>
