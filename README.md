@@ -2,7 +2,7 @@
 
 Follow someone as if you were sitting next to them, without sharing your screen. No picture goes over the line, only what happens.
 
-This is the code behind the article [Twee browsers, één scherm](https://hexz.net/meekijken/) on hexz.net (in Dutch). There you can try it: what you do on the left appears on the right.
+This is the code behind the article [Twee browsers, één scherm](https://www.hexz.net/meekijken/?utm_source=github&utm_medium=readme&utm_campaign=meekijken) on hexz.net (in Dutch). There you can try it: what you do on the left appears on the right.
 
 ## The question
 
